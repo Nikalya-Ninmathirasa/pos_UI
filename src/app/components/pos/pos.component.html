@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <h2 style="text-align:center;">Point of Sale</h2>
+  <!-- Checkout details -->
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.productName }}</td>
+          <td>{{ item.price | currency: 'Rs.' }}</td>
+          <td>
+            <input type="number" [(ngModel)]="item.quantity" (input)="calculateTotal()" class= "form-control" min="1">
+          </td>
+          <td>{{ item.price * item.quantity | currency: 'Rs.' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h3>Total: {{ total | currency: 'Rs.' }}</h3>
+    <button class="btn btn-success mt-4" (click)="checkout()">Checkout</button>
+  </div>
+  
